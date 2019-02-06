@@ -33,10 +33,12 @@
         <ul class="nav navbar-nav pull-right">
           <li><a href="index.php">Accueil</a></li>
           <li><a href="index.php?action=listPosts">BLOG</a></li>
-          <li><a class="btn" href="admin.php?action=SignUp">Inscription</a></li>
-          <li><a class="btn" href="admin.php?action=SignIn">Connexion</a></li>
+          <li><a href="admin.php?action=adminSpace">Lists des articles</a></li>
+          <li><a href="admin.php?action=comments">Lists des commentaires</a></li>
+          <li><a href="admin.php?action=users">Lists des utilisateurs</a></li>
+          <li><a class="btn" href="admin.php?action=addPost">Crée un article</a></li>
         </ul>
-      </div><!--/.nav-collapse -->
+      </div>
     </div>
   </div> 
   <!-- /.navbar -->
@@ -64,9 +66,6 @@
                 <a href=""><i class="fa fa-github fa-2"></i></a>
                 <a href=""><i class="fa fa-facebook fa-2"></i></a>
               </p>  
-              <p class="simplenav">
-                <a href="admin.php?action=admin">Interface Admin</a>
-              </p>
             </div>
           </div>
 
@@ -77,7 +76,8 @@
               </p>
             </div>
           </div>
-        </div> 
+
+        </div> <!-- /row of widgets -->
       </div>
     </div>
   </footer> 

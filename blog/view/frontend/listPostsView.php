@@ -8,10 +8,8 @@
     </ol>
 
     <div class="row">
-      
-      <!-- Article main content -->
+
       <article class="col-md-12 maincontent">
-        <!-- Project Details Go Here -->
 
 <?php
 while ($data = $posts->fetch())
@@ -27,12 +25,6 @@ while ($data = $posts->fetch())
 }
 $posts->closeCursor();
 ?>
-
-<!-- /Article -->
-      
-      <!-- Sidebar -->
-        <!-- aside removed -->
-      <!-- /Sidebar -->
 
     </div>
   </div>

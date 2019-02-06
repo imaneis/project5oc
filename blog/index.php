@@ -1,5 +1,8 @@
 <?php
-require('controller/controller.php');
+
+require "vendor/autoload.php";
+
+require('controller/frontend/frontendController.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'listPosts') {
@@ -28,5 +31,5 @@ if (isset($_GET['action'])) {
     }
 }
 else {
-    require('view/home_template.php');
+   home();
 }

@@ -51,17 +51,8 @@
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
       </article>
-      <!-- /Article -->
-      
-      <!-- Sidebar -->
-        <!-- aside removed -->
-      <!-- /Sidebar -->
-
     </div>
-  </div>  <!-- /container -->
-
-
-      
+  </div>  
 
 <?php $content = ob_get_clean(); ?>
 
