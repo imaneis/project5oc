@@ -33,7 +33,7 @@
 								<hr>
 								<div class="row">
 									<div class="col-lg-8">
-										<b><a href="">Forgot password?</a></b>
+										<b><a href="">Mot de passe oublié ?</a></b>
 									</div>
 									<div class="col-lg-4 text-right">
 										<a class="btn btn-action" href="admin.php?action=userSpace">Sign in</a>

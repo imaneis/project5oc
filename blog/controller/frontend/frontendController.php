@@ -44,7 +44,35 @@ function home()
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
-    $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+
+    $chaptersPerPage=8;
+ 
+    $total = $postManager->getAllRows();
+
+    $numberOfPages=ceil($total/$chaptersPerPage);
+
+    if(isset($_GET['page']))
+    {
+        $currentPage=intval($_GET['page']);
+           
+        if($currentPage == 0) 
+        {
+          header("Location: index.php");
+          exit();
+        }
+        elseif ($currentPage>$numberOfPages) {
+                 
+          $currentPage=$numberOfPages;
+        }
+    }
+    else
+    {
+      $currentPage=1;    
+    }
+
+    $firstEntry=($currentPage-1)*$chaptersPerPage;
+
+    $posts = $postManager->getPosts($firstEntry, $chaptersPerPage); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }

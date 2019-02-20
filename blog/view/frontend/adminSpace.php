@@ -47,6 +47,19 @@
                 <?php
                   }
                     $posts->closeCursor();
+                     echo '<p style="text-align: center;">Page : ';
+                      for($i=1; $i<=$numberOfPages; $i++)
+                      { 
+                           if($i==$currentPage)
+                           {
+                               echo ' [ '.$i.' ] '; 
+                           }  
+                           else
+                           {
+                                echo ' <a href="admin.php?action=adminSpace&amp;page='.$i.'">'.$i.'</a> ';
+                           }
+                      }
+                    echo '</p>';
                 ?>
             </tbody>
           </table>

@@ -79,6 +79,15 @@ if (isset($_GET['action'])) {
         }
         
     }
+    else if ($_GET['action'] == 'approveComment') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            approveComment($_GET['id']);
+        }
+        else {
+            echo 'Erreur';
+        }
+        
+    }
      else if ($_GET['action'] == 'users') {
 
         users();

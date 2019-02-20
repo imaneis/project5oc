@@ -21,10 +21,38 @@ function admin()
 
 function adminSpace()
 {
-  $postManager = new PostManager();
+  $postManager = new PostManager(); // Création d'un objet
 
-  $posts = $postManager->getPosts();
-  require('view/frontend/adminSpace.php');
+    $chaptersPerPage=8;
+ 
+    $total = $postManager->getAllRows();
+
+    $numberOfPages=ceil($total/$chaptersPerPage);
+
+    if(isset($_GET['page']))
+    {
+        $currentPage=intval($_GET['page']);
+           
+        if($currentPage == 0) 
+        {
+          header("Location: index.php");
+          exit();
+        }
+        elseif ($currentPage>$numberOfPages) {
+                 
+          $currentPage=$numberOfPages;
+        }
+    }
+    else
+    {
+      $currentPage=1;    
+    }
+
+    $firstEntry=($currentPage-1)*$chaptersPerPage;
+
+    $posts = $postManager->getPosts($firstEntry, $chaptersPerPage); // Appel d'une fonction de cet objet
+
+    require('view/frontend/adminSpace.php');
 }
 
 function addPost()
@@ -76,6 +104,15 @@ function deleteComment($id)
   exit();
 }
 
+function approveComment($id)
+{
+  $commentManager = new CommentManager();
+
+  $comments = $commentManager->approveComment($id);
+  header('Location: admin.php?action=comments');
+  exit();
+}
+
 function editPost($id)
 {
   $postManager = new PostManager();
@@ -120,8 +157,36 @@ function deleteUser($id)
 
 function userSpace()
 {
-  $postManager = new PostManager();
+  $postManager = new PostManager(); // Création d'un objet
 
-  $posts = $postManager->getPosts();
+    $chaptersPerPage=8;
+ 
+    $total = $postManager->getAllRows();
+
+    $numberOfPages=ceil($total/$chaptersPerPage);
+
+    if(isset($_GET['page']))
+    {
+        $currentPage=intval($_GET['page']);
+           
+        if($currentPage == 0) 
+        {
+          header("Location: index.php");
+          exit();
+        }
+        elseif ($currentPage>$numberOfPages) {
+                 
+          $currentPage=$numberOfPages;
+        }
+    }
+    else
+    {
+      $currentPage=1;    
+    }
+
+    $firstEntry=($currentPage-1)*$chaptersPerPage;
+
+    $posts = $postManager->getPosts($firstEntry, $chaptersPerPage); // Appel d'une fonction de cet objet
+    
   require('view/frontend/userSpace.php');
 }

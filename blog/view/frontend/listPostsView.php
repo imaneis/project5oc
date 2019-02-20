@@ -24,6 +24,19 @@ while ($data = $posts->fetch())
 <?php
 }
 $posts->closeCursor();
+ echo '<p style="text-align: center;">Page : ';
+    for($i=1; $i<=$numberOfPages; $i++)
+    { 
+         if($i==$currentPage)
+         {
+             echo ' [ '.$i.' ] '; 
+         }  
+         else
+         {
+              echo ' <a href="index.php?action=listPosts&amp;page='.$i.'">'.$i.'</a> ';
+         }
+    }
+  echo '</p>';
 ?>
 
     </div>

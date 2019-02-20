@@ -3,12 +3,25 @@ require_once("model/Manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o
 
 class PostManager extends Manager
 {
-    public function getPosts()
+    public function getAllRows()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        $total_return= $db->query('SELECT COUNT(*) AS total FROM posts');
+        $total_data= $total_return->fetch(PDO::FETCH_ASSOC);
+        $total=$total_data['total'];
+
+        return $total;
+
+    }
+
+     public function getPosts($firstEntry, $chaptersPerPage)
+    { 
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT '.$firstEntry.', '.$chaptersPerPage.'');
+        $req->execute(array($firstEntry, $chaptersPerPage));
 
         return $req;
+
     }
 
     public function getPost($postId)

@@ -39,7 +39,7 @@
                     <td><?= $data['author']; ?></td>
                     <td><?= $data['comment']; ?></td>
                     <td><?= $data['comment_date_fr']; ?></td>
-                    <td><button class="btn btn-warning">Approuver</button></td>
+                    <td><a href="admin.php?action=approveComment&amp;id=<?=$data['id'] ?>" class="btn btn-success">Approuver</a></td>
                     <td>
                       <a href="admin.php?action=deleteComment&amp;id=<?=$data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
