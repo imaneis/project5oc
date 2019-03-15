@@ -1,104 +1,97 @@
 <?php
 
-require('controller/backend/backendController.php');
+require('controller/backend/admin/SessionController.php');
+require('controller/backend/admin/backendController.php');
+
+$SessionController = new SessionController();
+
+$backendController = new backendController();
 
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'SignIn') {
-
-        signIn();
-    }
-    else if ($_GET['action'] == 'SignUp') {
-
-        signUp();
+    if ($_GET['action'] == 'logIn') {
         
-    }
-    else if ($_GET['action'] == 'admin') {
-
-        admin();
+        if (isset($_POST['submit'])) {
+            $name     = $_POST['name_or_email'];
+            $email    = $_POST['name_or_email'];
+            $password = $_POST['password'];
+            
+            $SessionController->sendLoginInfo($name, $email, $password);
+        } else {
+            $SessionController->checkLoginStatus();
+        }
         
-    }
-    else if ($_GET['action'] == 'adminSpace') {
-
-        adminSpace();
+    } else if ($_GET['action'] == 'logOut') {
         
-    }
-    else if ($_GET['action'] == 'addPost') {
-
-        addpost();
+        $SessionController->logOut();
         
-    }
-    else if ($_GET['action'] == 'editPost') {
+    } else if ($_GET['action'] == 'addPost') {
+        
+        $backendController->addpost();
+        
+    } else if ($_GET['action'] == 'editPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-
-            if(isset($_POST['submit']))
-            {
+            
+            if (isset($_POST['submit'])) {
                 extract($_POST);
-
-                if($title == '' || $content == ''){
+                
+                if ($title == '' || $content == '') {
                     echo 'Erreur';
                 }
-
-                if($title !== '' && $content !== ''){ 
-                    updatePost($_POST['id'], $_POST['title'], $_POST['content']);
+                
+                if ($title !== '' && $content !== '') {
+                    $backendController->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
+                } else {
+                    $backendController->editPost($_GET['id']);
                 }
-                else
-                {        
-                    editPost($_GET['id']);
-                }
+            } else {
+                $backendController->editPost($_GET['id']);
             }
-            else
-            {        
-                editPost($_GET['id']);
-            }
-        
-        }
-        else {
+            
+        } else {
             echo 'Erreur';
         }
-    }
-    else if ($_GET['action'] == 'deletePost') {
+    } else if ($_GET['action'] == 'deletePost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            deletePost($_GET['id']);
-        }
-        else {
+            $backendController->deletePost($_GET['id']);
+        } else {
             echo 'Erreur';
         }
         
-    }
-    else if ($_GET['action'] == 'comments') {
-
-        comments();
+    } else if ($_GET['action'] == 'showComments') {
         
-    }
-    else if ($_GET['action'] == 'deleteComment') {
+        $backendController->showComments();
+        
+    } else if ($_GET['action'] == 'deleteComment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            deleteComment($_GET['id']);
-        }
-        else {
+            $backendController->deleteComment($_GET['id']);
+        } else {
             echo 'Erreur';
         }
         
-    }
-     else if ($_GET['action'] == 'users') {
-
-        users();
-        
-    }
-    else if ($_GET['action'] == 'deleteUser') {
+    } else if ($_GET['action'] == 'approveComment') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            deleteUser($_GET['id']);
-        }
-        else {
+            $backendController->approveComment($_GET['id']);
+        } else {
             echo 'Erreur';
         }
         
-    }
-    else if ($_GET['action'] == 'userSpace') {
-
-        userSpace();
+    } else if ($_GET['action'] == 'showMembers') {
         
+        $backendController->showMembers();
+        
+    } else if ($_GET['action'] == 'approveMember') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $backendController->approveMember($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }
+    } else if ($_GET['action'] == 'deleteMember') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $backendController->deleteMember($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }
     }
-}
-else {
-   require('view/frontend/home_template.php');
+} else {
+    require('view/frontend/home.php');
 }

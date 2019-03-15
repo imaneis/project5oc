@@ -7,7 +7,7 @@ ob_start();
 
         <ol class="breadcrumb">
             <li><a href="index.php">Accueil</a></li>
-            <li class="active">Espace membre</li>
+            <li class="active">Admin Connexion</li>
         </ol>
 
         <div class="row">
@@ -17,15 +17,15 @@ ob_start();
                 <header class="page-header">
                     <h1 class="page-title">Connexion</h1>
                 </header>
+                
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="thin text-center">Espace membre</h3>
-                            <p class="text-center text-muted">Si vous n'avez pas de compte merci de vous<a href="signup.html">inscrire</a>, dans le cas contraire veuillez renseigner vos identifiants</p>
+                            <h3 class="thin text-center">connexion a l'espace admin</h3>
                             <hr>
-                            <form method="post">
-                                <?php
-if (isset($error)) {
+                            <?php
+if(isset($error))
+{
 ?>
 <div class="alert alert-danger">
    <?= $error; ?> 
@@ -33,21 +33,25 @@ if (isset($error)) {
 <?php
 }
 ?> 
+                            
+                            <form method="post">
                                 <div class="top-margin">
-                                    <label>pseudo/Email<span class="text-danger">*</span></label>
-                                    <input type="text" name="pseudo_or_email" class="form-control" required>
+                                    <label>pseudo/Email <span class="text-danger">*</span></label>
+                                    <input type="text" name="name_or_email" required class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Mot de passe<span class="text-danger">*</span></label>
-                                    <input type="password" name="pass" class="form-control" required>
+                                    <label>Mot de Pass<span class="text-danger">*</span></label>
+                                    <input type="password" name="password" required class="form-control">
                                 </div>
+
                                 <hr>
+
                                 <div class="row">
                                     <div class="col-lg-8">
-                                    
+                                        
                                     </div>
                                     <div class="col-lg-4 text-right">
-                                        <button class="btn btn-action" name="submit" type="submit">Connexion</button>
+                                        <button class="btn btn-action" type="submit" name="submit">Connexion</button>
                                     </div>
                                 </div>
                             </form>
@@ -56,8 +60,7 @@ if (isset($error)) {
                 </div>
             </article>
         </div>
-    </div>    
-
+    </div>
 <?php
 $content = ob_get_clean();
 ?>

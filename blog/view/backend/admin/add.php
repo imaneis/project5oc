@@ -1,10 +1,12 @@
-<?php ob_start(); ?>
+<?php
+ob_start();
+?>
 
 <div class="container">
 
     <ol class="breadcrumb">
       <li><a href="index.php">Home</a></li>
-      <li class="active"><a href="index.php?action=listPosts">blog</a></li>
+      <li class="active"><a href="admin.php?action=logIn">espace admin</a></li>
       <li class="active">Ajouter un article</li>
     </ol>
 
@@ -13,17 +15,17 @@
       <!-- Article main content -->
       <article class="col-md-12 maincontent">
 
-      	<header class="page-header">
-			<h1 class="page-title">Ajouter un article</h1>
-		</header>
-      	 <form method='post'>
+          <header class="page-header">
+            <h1 class="page-title">Ajouter un article</h1>
+        </header>
+           <form method='post'>
             <div class="form-group">
             <label>Titre</label>
-            <input class="form-control" name="title" type='text'>
+            <input class="form-control" name="title" type='text' required>
           </div>
             <div class="form-group">
             <label>contenu</label>
-            <textarea name='content' cols='160' rows='5'></textarea>
+            <textarea name='content' cols='160' rows='5' required></textarea>
           </div>
             <div class="form-group">
             <input class="btn btn-success" name='submit' type='submit'>
@@ -33,6 +35,10 @@
     </div>
   </div> 
 
-<?php $content = ob_get_clean(); ?>
+<?php
+$content = ob_get_clean();
+?>
 
-<?php require('adminTemplate.php'); ?>
+<?php
+require('template.php');
+?>
