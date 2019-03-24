@@ -35,14 +35,14 @@ ob_start();
                 <?php
 while ($data = $comments->fetch()) {
 ?>
-              <tr>
+               <tr>
                     <th><?= $data['post_id']; ?></th>
                     <td><?= $data['author']; ?></td>
                     <td><?= $data['comment']; ?></td>
                     <td><?= $data['comment_date_fr']; ?></td>
-                    <td><a href="admin.php?action=approveComment&amp;id=<?= $data['id'] ?>" class="btn btn-success">Approuver</a></td>
+                    <td><a href="index.php?action=approveComment&amp;id=<?= $data['id'] ?>" class="btn btn-success">Approuver</a></td>
                     <td>
-                      <a href="admin.php?action=deleteComment&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
   
@@ -50,7 +50,7 @@ while ($data = $comments->fetch()) {
 }
 $comments->closeCursor();
 ?>
-          </tbody>
+           </tbody>
           </table>
         </div>
       </article>
@@ -58,20 +58,21 @@ $comments->closeCursor();
   </div> 
 
   <?php
-echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-for ($i = 1; $i <= $nombreDePages; $i++) //On fait notre boucle
-    {
-    //On va faire notre condition
-    if ($i == $pageActuelle) //Si il s'agit de la page actuelle...
+    echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
+      for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+      {
+         //On va faire notre condition
+        if($i==$pageActuelle) //Si il s'agit de la page actuelle...
         {
-        echo ' [ ' . $i . ' ] ';
-    } else //Sinon...
+          echo ' [ '.$i.' ] '; 
+        }  
+        else //Sinon...
         {
-        echo ' <a href="admin.php?action=showComments&amp;page=' . $i . '">' . $i . '</a> ';
-    }
-}
-echo '</p>';
-?>
+          echo ' <a href="index.php?action=showComments&amp;page='.$i.'">'.$i.'</a> ';
+        }
+      }
+    echo '</p>';
+  ?>
 
 <?php
 $content = ob_get_clean();

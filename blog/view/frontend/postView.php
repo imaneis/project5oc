@@ -19,12 +19,11 @@ ob_start();
 
       <p>
           <?= nl2br($post['content']) ?>
-    </p>
+     </p>
 
       <ul>
         <li>Date:<?= $post['creation_date_fr'] ?></li>
         <li>Auteur:<?= htmlspecialchars($post['author']) ?></li>
-        <li>Categorie: Formation</li>
       </ul>
 
 
@@ -32,7 +31,7 @@ ob_start();
 
 while ($comment = $comments->fetch()) {
 ?>
-          <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+           <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
             <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
         <?php
 }
@@ -62,4 +61,3 @@ $content = ob_get_clean();
 <?php
 require('view/frontend/template.php');
 ?>
-Download Formatting took: 116 

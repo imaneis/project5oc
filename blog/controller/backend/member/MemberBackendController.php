@@ -1,19 +1,19 @@
 <?php
 
-require_once('model/backend/member/PostManager.php');
-require_once('model/backend/member/SessionManager.php');
+require_once('model/backend/member/MemberPostManager.php');
+require_once('model/backend/member/MemberSessionManager.php');
 
-class backendController
+class MemberBackendController
 {
-    
+
     public function signUp()
     {
         
-        $SessionManager = new SessionManager(); // Création d'un objet
+        $MemberSessionManager = new MemberSessionManager(); // Création d'un objet
         
         if (isset($_POST['inscription'])) {
             // On rend inoffensif les données de l'utilisateur
-            $_POST['pseudo']     = htmlspecialchars($_POST['pseudo']);
+            $_POST['pseudo']      = htmlspecialchars($_POST['pseudo']);
             $_POST['email']      = htmlspecialchars($_POST['email']);
             $_POST['pass']       = htmlspecialchars($_POST['pass']);
             $_POST['verif_pass'] = htmlspecialchars($_POST['verif_pass']);
@@ -42,7 +42,7 @@ class backendController
                 $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
                 
                 // Enregistrement du membre dans la bdd
-                $SessionManager->enregistrement_membre($_POST['pseudo'], $_POST['email'], $pass_hash);
+                $MemberSessionManager->enregistrement_membre($_POST['pseudo'], $_POST['email'], $pass_hash);
                 
                 $message = 'Vous avez été inscrit.';
                 require('view/frontend/sign_up.php');
@@ -55,50 +55,50 @@ class backendController
             require('view/frontend/sign_up.php');
         }
     }
-    
+
     public function addPost()
     {
         $erreursaisie = false;
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['memberAdd'])) {
             extract($_POST);
             
             if ($title == '' || $content == '') {
                 $erreursaisie = true;
                 require('view/backend/member/add.php');
             } else {
-                $PostManager = new PostManager();
-                $PostManager->createPost($title, $content, $_SESSION['member_name']);
-                header('Location: member.php?action=signIn');
+                $MemberPostManager = new MemberPostManager();
+                $MemberPostManager->createPost($title, $content, $_SESSION['member_name']);
+                header('Location: index.php?action=signIn');
                 exit();
             }
         } else {
             require('view/backend/member/add.php');
         }
-        
-    }
     
+    }
+
     public function editPost($id)
     {
-        $PostManager = new PostManager();
+        $MemberPostManager = new MemberPostManager();
         
-        $post = $PostManager->getPost($id);
+        $post = $MemberPostManager->getPost($id);
         
         require('view/backend/member/edit.php');
     }
-    
+
     public function updatePost($id, $postTitle, $postCont)
     {
-        $PostManager = new PostManager();
+        $MemberPostManager = new MemberPostManager();
         
-        $post = $PostManager->updatePost($id, $postTitle, $postCont);
+        $post = $MemberPostManager->updatePost($id, $postTitle, $postCont);
     }
-    
+
     public function deletePost($id)
     {
-        $PostManager = new PostManager();
+        $MemberPostManager = new MemberPostManager();
         
-        $posts = $PostManager->deletePost($id);
-        header('Location: member.php?action=signIn');
+        $posts = $MemberPostManager->deletePost($id);
+        header('Location: index.php?action=signIn');
         exit();
     }
     

@@ -6,7 +6,7 @@ ob_start();
 
     <ol class="breadcrumb">
       <li><a href="index.php">Home</a></li>
-      <li class="active"><a href="admin.php?action=logIn">espace admin</a></li>
+      <li class="active"><a href="index.php?action=signIn">espace membre</a></li>
       <li class="active">mettre a jour l'article</li>
     </ol>
 
@@ -25,7 +25,7 @@ echo $post['id'];
             <div class="form-group">
             <label>Titre</label>
             <?= '<input type="text" class="form-control" name="title" value="' . $post['title'] . '" required>'; ?>
-        </div>
+         </div>
             <div class="form-group">
             <label>contenu</label>
             <textarea name='content' cols='160' rows='5' required><?php
@@ -33,7 +33,7 @@ echo $post['content'];
 ?></textarea>
           </div>
             <div class="form-group">
-            <input class="btn btn-success" name='submit' type='submit'>
+            <input class="btn btn-success" name='memberEdit' type='submit'>
           </div>
           </form>
       </article>

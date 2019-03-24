@@ -34,30 +34,31 @@ ob_start();
               <?php
 while ($data = $members->fetch()) {
 ?>
-              <tr>
+               <tr>
                     <th><?= $data['id']; ?></th>
                     <td><?= $data['pseudo']; ?></td>
                     <td><?= $data['date_inscription_fr']; ?></td>
                     <td>
+                      <?php if ($data['approvement'] == 1) {
+                        echo "cette utilisateur est apprové";
+                      }
+                      else
+                      {
+                      ?>
+                        <a href="index.php?action=approveMember&amp;id=<?= $data['id'] ?>" class="btn btn-success">approver</a>
                       <?php
-    if ($data['approvement'] == 1) {
-        echo "cette utilisateur est apprové";
-    } else {
-?>
-                       <a href="admin.php?action=approveMember&amp;id=<?= $data['id'] ?>" class="btn btn-success">approver</a>
-                      <?php
-    }
-?>
-                   </td>
+                      }
+                      ?>
+                    </td>
                     <td>
-                      <a href="admin.php?action=deleteMember&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="index.php?action=deleteMember&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
                 <?php
 }
 $members->closeCursor();
 ?>
-          </tbody>
+           </tbody>
           </table>
         </div>
       </article>
@@ -65,20 +66,21 @@ $members->closeCursor();
   </div>  
 
   <?php
-echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-for ($i = 1; $i <= $nombreDePages; $i++) //On fait notre boucle
-    {
-    //On va faire notre condition
-    if ($i == $pageActuelle) //Si il s'agit de la page actuelle...
+    echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
+      for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+      {
+         //On va faire notre condition
+        if($i==$pageActuelle) //Si il s'agit de la page actuelle...
         {
-        echo ' [ ' . $i . ' ] ';
-    } else //Sinon...
+          echo ' [ '.$i.' ] '; 
+        }  
+        else //Sinon...
         {
-        echo ' <a href="admin.php?action=showMembers&amp;page=' . $i . '">' . $i . '</a> ';
-    }
-}
-echo '</p>';
-?>
+          echo ' <a href="index.php?action=showMembers&amp;page='.$i.'">'.$i.'</a> ';
+        }
+      }
+    echo '</p>';
+  ?>
 
 <?php
 $content = ob_get_clean();

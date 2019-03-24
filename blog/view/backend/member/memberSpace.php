@@ -35,27 +35,28 @@ ob_start();
              <?php
 while ($data = $posts->fetch()) {
 ?>
-              <tr>
+               <tr>
                     <th><?= $data['id']; ?></th>
                     <td><?= $data['title']; ?></td>
                     <td><?= $data['creation_date_fr']; ?></td>
-                    <td><?php
-    if ($data['update_date_fr'] === null) {
-        echo "pas encore de maj";
-    } else {
-        echo $data['update_date_fr'];
-    }
-?></td>
-                    <td><a class="btn btn-warning" href="member.php?action=editPost&amp;id=<?= $data['id'] ?>">Éditer</a></td>
+                    <td><?php 
+                    if ($data['update_date_fr'] === null) {
+                        echo "pas encore de maj";
+                    }
+                    else {
+                         echo $data['update_date_fr'];
+                    }
+                    ?></td>
+                    <td><a class="btn btn-warning" href="index.php?action=memberEditPost&amp;id=<?= $data['id'] ?>">Éditer</a></td>
                     <td>
-                      <a href="member.php?action=deletePost&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="index.php?action=memberDeletePost&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
                 <?php
 }
 $posts->closeCursor();
 ?>
-          </tbody>
+           </tbody>
           </table>
         </div>
       </article>
@@ -63,20 +64,21 @@ $posts->closeCursor();
   </div> 
 
   <?php
-echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-for ($i = 1; $i <= $nombreDePages; $i++) //On fait notre boucle
-    {
-    //On va faire notre condition
-    if ($i == $pageActuelle) //Si il s'agit de la page actuelle...
+    echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
+      for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+      {
+         //On va faire notre condition
+        if($i==$pageActuelle) //Si il s'agit de la page actuelle...
         {
-        echo ' [ ' . $i . ' ] ';
-    } else //Sinon...
+          echo ' [ '.$i.' ] '; 
+        }  
+        else //Sinon...
         {
-        echo ' <a href="member.php?action=signIn&amp;page=' . $i . '">' . $i . '</a> ';
-    }
-}
-echo '</p>';
-?>
+          echo ' <a href="index.php?action=signIn&amp;page='.$i.'">'.$i.'</a> ';
+        }
+      }
+    echo '</p>';
+  ?>
 
 <?php
 $content = ob_get_clean();

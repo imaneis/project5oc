@@ -6,8 +6,8 @@ ob_start();
     <div class="container">
 
         <ol class="breadcrumb">
-            <li><a href="index.php">Accueil</a></li>
-            <li class="active">Admin Connexion</li>
+            <li><a href="index.php">Home</a></li>
+            <li class="active">Admin access</li>
         </ol>
 
         <div class="row">
@@ -15,13 +15,13 @@ ob_start();
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">Connexion</h1>
+                    <h1 class="page-title">Sign in</h1>
                 </header>
                 
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="thin text-center">connexion a l'espace admin</h3>
+                            <h3 class="thin text-center">Sign in to your admin account</h3>
                             <hr>
                             <?php
 if(isset($error))
@@ -36,11 +36,11 @@ if(isset($error))
                             
                             <form method="post">
                                 <div class="top-margin">
-                                    <label>pseudo/Email <span class="text-danger">*</span></label>
+                                    <label>Username/Email <span class="text-danger">*</span></label>
                                     <input type="text" name="name_or_email" required class="form-control">
                                 </div>
                                 <div class="top-margin">
-                                    <label>Mot de Pass<span class="text-danger">*</span></label>
+                                    <label>Password <span class="text-danger">*</span></label>
                                     <input type="password" name="password" required class="form-control">
                                 </div>
 
@@ -51,7 +51,7 @@ if(isset($error))
                                         
                                     </div>
                                     <div class="col-lg-4 text-right">
-                                        <button class="btn btn-action" type="submit" name="submit">Connexion</button>
+                                        <button class="btn btn-action" type="submit" name="logIn">Sign in</button>
                                     </div>
                                 </div>
                             </form>

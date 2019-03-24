@@ -10,7 +10,7 @@ require_once('model/frontend/CommentManager.php');
 
 class frontendController
 {
-    
+
     public function home()
     {
         if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["email"]) && isset($_POST["message"])) {
@@ -42,50 +42,51 @@ class frontendController
                 echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
             }
         }
-        
+
         require('view/frontend/home.php');
     }
     public function listPosts()
     {
         $postManager = new PostManager();
-        
-        $messagesParPage = 5;
-        
+
+        $messagesParPage=5;
+       
         $total = $postManager->totalPosts();
-        
-        $nombreDePages = ceil($total / $messagesParPage);
-        
-        if (isset($_GET['page'])) // Si la variable $_GET['page'] existe...
-            {
-            $pageActuelle = intval($_GET['page']);
-            
-            if ($pageActuelle > $nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
-                {
-                $pageActuelle = $nombreDePages;
-            }
-        } else // Sinon
-            {
-            $pageActuelle = 1; // La page actuelle est la n°1    
+
+        $nombreDePages=ceil($total/$messagesParPage);
+
+        if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
+        {
+           $pageActuelle=intval($_GET['page']);
+       
+           if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+           {
+                $pageActuelle=$nombreDePages;
+           }
         }
-        
-        $premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
-        
+        else // Sinon
+        {
+             $pageActuelle=1; // La page actuelle est la n°1    
+        }
+         
+        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+
         $posts = $postManager->getPosts($premiereEntree, $messagesParPage);
         
         require('view/frontend/listPostsView.php');
     }
-    
+
     public function post()
     {
-        $postManager    = new PostManager();
+        $postManager = new PostManager();
         $commentManager = new CommentManager();
         
-        $post     = $postManager->getPost($_GET['id']);
+        $post = $postManager->getPost($_GET['id']);
         $comments = $commentManager->getComments($_GET['id']);
         
         require('view/frontend/postView.php');
     }
-    
+
     public function addComment($postId, $author, $comment)
     {
         $commentManager = new CommentManager();
@@ -100,3 +101,4 @@ class frontendController
     }
     
 }
+  
