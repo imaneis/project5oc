@@ -60,19 +60,11 @@ if (isset($_GET['action'])) {
         $AdminSessionController->logOut();
         
     } else if ($_GET['action'] == 'adminAddPost') {
-
-        if (!isset ($_SESSION['admin_session'])){
-           header('Location: index.php?action=logIn'); 
-        } 
-        else
-        {
-            $AdminBackendController->addpost();
-        }
         
-        
+        $AdminBackendController->addpost();
         
     } else if ($_GET['action'] == 'adminEditPost') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             
             if (isset($_POST['adminEdit'])) {
                 extract($_POST);
@@ -91,59 +83,48 @@ if (isset($_GET['action'])) {
             }
             
         } else {
-            header('Location: index.php?action=logIn'); 
+            echo 'Erreur';
         }
     } else if ($_GET['action'] == 'adminDeletePost') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $AdminBackendController->deletePost($_GET['id']);
         } else {
-            header('Location: index.php?action=logIn');
+            echo 'Erreur';
         }
         
     } else if ($_GET['action'] == 'showComments') {
-
-        if (!isset ($_SESSION['admin_session'])){
-           header('Location: index.php?action=logIn'); 
-        } 
-        else
-        {
-            $AdminBackendController->showComments();
-        }
+        
+        $AdminBackendController->showComments();
         
     } else if ($_GET['action'] == 'deleteComment') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $AdminBackendController->deleteComment($_GET['id']);
         } else {
-            header('Location: index.php?action=logIn');
+            echo 'Erreur';
         }
         
     } else if ($_GET['action'] == 'approveComment') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $AdminBackendController->approveComment($_GET['id']);
         } else {
-            header('Location: index.php?action=logIn');
+            echo 'Erreur';
         }
         
     } else if ($_GET['action'] == 'showMembers') {
-        if (!isset ($_SESSION['admin_session'])){
-           header('Location: index.php?action=logIn'); 
-        } 
-        else
-        {
-            $AdminBackendController->showMembers();
-        }
+        
+        $AdminBackendController->showMembers();
         
     } else if ($_GET['action'] == 'approveMember') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $AdminBackendController->approveMember($_GET['id']);
         } else {
-            header('Location: index.php?action=logIn');
+            echo 'Erreur';
         }    
     } else if ($_GET['action'] == 'deleteMember') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['admin_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $AdminBackendController->deleteMember($_GET['id']);
         } else {
-            header('Location: index.php?action=logIn');
+            echo 'Erreur';
         }    
     } else if ($_GET['action'] == 'signIn') {
 
@@ -168,17 +149,11 @@ if (isset($_GET['action'])) {
         $MemberSessionController->signOut();
         
     } else if ($_GET['action'] == 'memberAddPost') {
-
-        if (!isset ($_SESSION['member_session'])){
-           header('Location: index.php?action=signIn'); 
-        } 
-        else
-        {
-            $MemberBackendController->addpost();
-        }
+        
+        $MemberBackendController->addpost();
         
     } else if ($_GET['action'] == 'memberEditPost') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['member_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             
             if (isset($_POST['memberEdit'])) {
                 extract($_POST);
@@ -197,13 +172,13 @@ if (isset($_GET['action'])) {
             }
             
         } else {
-            header('Location: index.php?action=signIn'); 
+            echo 'Erreur';
         }
     } else if ($_GET['action'] == 'memberDeletePost') {
-        if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION['member_session'])) {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $MemberBackendController->deletePost($_GET['id']);
         } else {
-            header('Location: index.php?action=signIn'); 
+            echo 'Erreur';
         }
     }
 }

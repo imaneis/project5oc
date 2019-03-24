@@ -9,7 +9,7 @@ class AdminBackendController
 
     public function addPost()
     {
-
+        $erreursaisie = false;
         if (isset($_POST['adminAdd'])) {
             extract($_POST);
             
