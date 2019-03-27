@@ -49,9 +49,9 @@ while ($data = $posts->fetch()) {
                          echo $data['update_date_fr'];
                     }
                     ?></td>
-                    <td><a class="btn btn-warning" href="admin.php?action=editPost&amp;id=<?= $data['id'] ?>">Éditer</a></td>
+                    <td><a class="btn btn-warning" href="index.php?action=adminEditPost&amp;id=<?= $data['id'] ?>">Éditer</a></td>
                     <td>
-                      <a href="admin.php?action=deletePost&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="index.php?action=adminDeletePost&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
                 <?php
@@ -76,7 +76,7 @@ $posts->closeCursor();
         }  
         else //Sinon...
         {
-          echo ' <a href="admin.php?action=logIn&amp;page='.$i.'">'.$i.'</a> ';
+          echo ' <a href="index.php?action=logIn&amp;page='.$i.'">'.$i.'</a> ';
         }
       }
     echo '</p>';

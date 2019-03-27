@@ -27,8 +27,8 @@
                <ul class="nav navbar-nav pull-right">
                   <li><a href="index.php">Accueil</a></li>
                   <li><a href="index.php?action=listPosts">BLOG</a></li>
-                  <li><a class="btn" href="member.php?action=signUp">Inscription</a></li>
-                  <li><a class="btn" href="member.php?action=signIn">Connexion</a></li>
+                  <li><a class="btn" href="index.php?action=signUp">Inscription</a></li>
+                  <li><a class="btn" href="index.php?action=signIn">Connexion</a></li>
                </ul>
             </div>
             <!--/.nav-collapse -->
@@ -51,7 +51,7 @@
                            <a href="https://www.linkedin.com/in/imane-issany/"><i class="fa fa-linkedin fa-2"></i></a>
                         </p>
                         <p class="simplenav">
-                           <a href="admin.php?action=logIn">Interface Admin</a>
+                           <a href="index.php?action=logIn">Interface Admin</a>
                         </p>
                      </div>
                   </div>

@@ -48,7 +48,7 @@ if(isset($error))
                                     
                                     </div>
                                     <div class="col-lg-4 text-right">
-                                        <button class="btn btn-action" name="submit" type="submit">Sign in</button>
+                                        <button class="btn btn-action" name="signIn" type="submit">Sign in</button>
                                     </div>
                                 </div>
                             </form>

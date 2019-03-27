@@ -23,7 +23,7 @@ ob_start();
                             <h3 class="thin text-center">Register a new account</h3>
                             <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="member.php?action=signIn">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
                             <hr>
-                            <form action="member.php?action=signUp" method="post">
+                            <form method="post">
                                 <?php
 if(isset($message))
 {

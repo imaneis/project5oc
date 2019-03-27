@@ -31,11 +31,11 @@
           <ul class="nav navbar-nav pull-right">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="index.php?action=listPosts">BLOG</a></li>
-            <li><a href="admin.php?action=logIn">Lists des articles</a></li>
-            <li><a href="admin.php?action=showComments">Lists des commentaires</a></li>
-            <li><a href="admin.php?action=showMembers">Lists des utilisateurs</a></li>
-            <li><a class="btn" href="admin.php?action=addPost">Crée un article</a></li>
-            <li><a class="btn" href="admin.php?action=logOut">Se déconnecter</a></li>
+            <li><a href="index.php?action=logIn">Lists des articles</a></li>
+            <li><a href="index.php?action=showComments">Lists des commentaires</a></li>
+            <li><a href="index.php?action=showMembers">Lists des utilisateurs</a></li>
+            <li><a class="btn" href="index.php?action=adminAddPost">Crée un article</a></li>
+            <li><a class="btn" href="index.php?action=logOut">Se déconnecter</a></li>
           </ul>
         </div>
       </div>
