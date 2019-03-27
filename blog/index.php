@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'adminEditPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             
-            if (isset($_POST['adminEdit'])) {
+            if (isset($_POST['a_edit'])) {
                 extract($_POST);
                 
                 if ($title == '' || $content == '') {
@@ -155,7 +155,7 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'memberEditPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             
-            if (isset($_POST['memberEdit'])) {
+            if (isset($_POST['m_edit'])) {
                 extract($_POST);
                 
                 if ($title == '' || $content == '') {

@@ -7,34 +7,21 @@ require_once('model/backend/admin/MembersManager.php');
 class AdminBackendController
 {
 
-    public function addPost()
-    {
-        $erreursaisie = false;
-        if (isset($_POST['adminAdd'])) {
-            extract($_POST);
-            
-            if ($title == '' || $content == '') {
-                $erreursaisie = true;
-                require('view/backend/admin/add.php');
-            } else {
-                $AdminPostManager = new AdminPostManager();
-                $AdminPostManager->createPost($title, $content);
-                header('Location: index.php?action=logIn');
-                exit();
-            }
-        } else {
-            require('view/backend/admin/add.php');
-        }
-    
-    }
+    public function getCount($test)
+  {
 
-    public function showComments()
-    {
-        $AdminCommentManager = new AdminCommentManager();
+     $messagesParPage=5;
 
-        $messagesParPage=5;
+     if ($test) {
+         $AdminCommentManager = new AdminCommentManager();
+         $total = $AdminCommentManager->totalComments();
+     }
+     else
+     {
+         $MembersManager = new MembersManager();
+         $total = $MembersManager->totalMembers();
+     }
        
-        $total = $AdminCommentManager->totalComments();
 
         $nombreDePages=ceil($total/$messagesParPage);
 
@@ -54,9 +41,43 @@ class AdminBackendController
          
         $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
 
-        $comments = $AdminCommentManager->getcomments($premiereEntree, $messagesParPage);
+        if ($test) {
+            $comments = $AdminCommentManager->getcomments($premiereEntree, $messagesParPage);
         
-        require('view/backend/admin/comments.php');
+            require('view/backend/admin/comments.php');
+        }
+        else
+        {
+            $members = $MembersManager->getMembers($premiereEntree, $messagesParPage);
+
+            require('view/backend/admin/showMembers.php');
+        }
+
+  }
+
+    public function addPost()
+    {
+        if (isset($_POST['adminAdd'])) {
+            extract($_POST);
+
+            $AdminPostManager = new AdminPostManager();
+            $AdminPostManager->createPost($title, $content);
+            header('Location: index.php?action=logIn');
+            exit();
+            
+        }
+        else
+        {
+            require('view/backend/admin/add.php');
+        }
+    }
+
+    public function showComments()
+    {
+
+        $test = true;
+
+        $this->getCount($test);
     }
 
     public function deleteComment($id)
@@ -104,33 +125,10 @@ class AdminBackendController
 
     public function showMembers()
     {
-        $MembersManager = new MembersManager();
 
-        $messagesParPage=5;
-       
-        $total = $MembersManager->totalMembers();
+        $test = false;
 
-        $nombreDePages=ceil($total/$messagesParPage);
-
-        if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
-        {
-           $pageActuelle=intval($_GET['page']);
-       
-           if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
-           {
-                $pageActuelle=$nombreDePages;
-           }
-        }
-        else // Sinon
-        {
-             $pageActuelle=1; // La page actuelle est la n°1    
-        }
-         
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
-
-        $members = $MembersManager->getMembers($premiereEntree, $messagesParPage);
-
-        require('view/backend/admin/showMembers.php');
+        $this->getCount($test);
     }
 
     public function approveMember($id)

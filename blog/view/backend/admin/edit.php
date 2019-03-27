@@ -33,7 +33,7 @@ echo $post['content'];
 ?></textarea>
           </div>
             <div class="form-group">
-            <input class="btn btn-success" name='adminEdit' type='submit'>
+            <input class="btn btn-success" name='a_edit' type='submit'>
           </div>
           </form>
       </article>
