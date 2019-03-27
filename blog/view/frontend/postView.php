@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php
+ob_start();
+?>
 
 <div class="container">
 
@@ -17,36 +19,34 @@
 
       <p>
           <?= nl2br($post['content']) ?>
-      </p>
+     </p>
 
       <ul>
         <li>Date:<?= $post['creation_date_fr'] ?></li>
         <li>Auteur:<?= htmlspecialchars($post['author']) ?></li>
-        <li>Categorie: Formation</li>
       </ul>
 
 
         <?php
 
-        while ($comment = $comments->fetch())
-        {
-        ?>
-            <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+while ($comment = $comments->fetch()) {
+?>
+           <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
             <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
         <?php
-        }
-        ?>
+}
+?>
 
         <h2>Ajouter un Commentaire</h2>
 
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
               <div class="form-group">
                 <label for="author">Nom</label>
-                <input type="text" class="form-control" id="author" name="author">
+                <input type="text" class="form-control" id="author" name="author" required>
               </div>
                 <div class="form-group">
                 <label for="comment">commentaire</label>
-                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -54,6 +54,10 @@
     </div>
   </div>  
 
-<?php $content = ob_get_clean(); ?>
+<?php
+$content = ob_get_clean();
+?>
 
-<?php require('view/template.php'); ?>
+<?php
+require('view/frontend/template.php');
+?>

@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php
+ob_start();
+?>
 
 <div class="container">
 
@@ -12,36 +14,46 @@
       <article class="col-md-12 maincontent">
 
 <?php
-while ($data = $posts->fetch())
-{
+while ($data = $posts->fetch()) {
 ?>
 
 <header class="page-header">
-	<a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><h1 class="page-title"><?= htmlspecialchars($data['title']) ?></h1></a>
-  <p><?php echo substr($data['content'], 12, 200); ?></p>
+    <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><h1 class="page-title"><?= htmlspecialchars($data['title']) ?></h1></a>
+  <p><?php
+    echo substr($data['content'], 12, 200);
+?></p>
 </header>
   
 <?php
 }
 $posts->closeCursor();
- echo '<p style="text-align: center;">Page : ';
-    for($i=1; $i<=$numberOfPages; $i++)
-    { 
-         if($i==$currentPage)
-         {
-             echo ' [ '.$i.' ] '; 
-         }  
-         else
-         {
-              echo ' <a href="index.php?action=listPosts&amp;page='.$i.'">'.$i.'</a> ';
-         }
-    }
-  echo '</p>';
 ?>
 
     </div>
   </div>
 
-<?php $content = ob_get_clean(); ?>
+  <?php
+    echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
+      for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+      {
+         //On va faire notre condition
+        if($i==$pageActuelle) //Si il s'agit de la page actuelle...
+        {
+          echo ' [ '.$i.' ] '; 
+        }  
+        else //Sinon...
+        {
+          echo ' <a href="index.php?action=listPosts&amp;page='.$i.'">'.$i.'</a> ';
+        }
+      }
+    echo '</p>';
+  ?>
 
-<?php require('view/template.php'); ?>
+<?php
+$content = ob_get_clean();
+?>
+
+
+<?php
+require('view/frontend/template.php');
+?>
