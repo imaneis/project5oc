@@ -24,6 +24,7 @@ ob_start();
       <ul>
         <li>Date:<?= $post['creation_date_fr'] ?></li>
         <li>Auteur:<?= htmlspecialchars($post['author']) ?></li>
+        <li>Categorie: Formation</li>
       </ul>
 
 

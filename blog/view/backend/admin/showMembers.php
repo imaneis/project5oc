@@ -45,13 +45,13 @@ while ($data = $members->fetch()) {
                       else
                       {
                       ?>
-                        <a href="index.php?action=approveMember&amp;id=<?= $data['id'] ?>" class="btn btn-success">approver</a>
+                        <a href="admin.php?action=approveMember&amp;id=<?= $data['id'] ?>" class="btn btn-success">approver</a>
                       <?php
                       }
                       ?>
                     </td>
                     <td>
-                      <a href="index.php?action=deleteMember&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="admin.php?action=deleteMember&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
                 <?php
@@ -76,7 +76,7 @@ $members->closeCursor();
         }  
         else //Sinon...
         {
-          echo ' <a href="index.php?action=showMembers&amp;page='.$i.'">'.$i.'</a> ';
+          echo ' <a href="admin.php?action=showMembers&amp;page='.$i.'">'.$i.'</a> ';
         }
       }
     echo '</p>';

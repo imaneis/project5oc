@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 15 mars 2019 à 15:07
+-- Généré le :  sam. 09 mars 2019 à 22:07
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
-(1, 'admin', 'admin@email.fr', '$2y$10$j8tN3wcAMbDcA1qgBPGRquW0f4N5vlgjPruPQ8SRcv3bxnNIHm9SO');
+(1, 'admin', 'email@email.fr', '$2y$10$j8tN3wcAMbDcA1qgBPGRquW0f4N5vlgjPruPQ8SRcv3bxnNIHm9SO');
 
 -- --------------------------------------------------------
 

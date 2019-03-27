@@ -31,9 +31,9 @@
           <ul class="nav navbar-nav pull-right">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="index.php?action=listPosts">BLOG</a></li>
-            <li><a href="index.php?action=signIn">Lists des articles</a></li>
-            <li><a class="btn" href="index.php?action=memberAddPost">Crée un article</a></li>
-            <li><a class="btn" href="index.php?action=signOut">Se déconnecter</a></li>
+            <li><a href="member.php?action=signIn">Lists des articles</a></li>
+            <li><a class="btn" href="member.php?action=addPost">Crée un article</a></li>
+            <li><a class="btn" href="member.php?action=signOut">Se déconnecter</a></li>
           </ul>
         </div>
       </div>

@@ -6,7 +6,7 @@ ob_start();
 
     <ol class="breadcrumb">
       <li><a href="index.php">Home</a></li>
-      <li class="active"><a href="index.php?action=logIn">espace admin</a></li>
+      <li class="active"><a href="admin.php?action=logIn">espace admin</a></li>
       <li class="active">Ajouter un article</li>
     </ol>
 
@@ -28,7 +28,7 @@ ob_start();
             <textarea name='content' cols='160' rows='5' required></textarea>
           </div>
             <div class="form-group">
-            <input class="btn btn-success" name='adminAdd' type='submit'>
+            <input class="btn btn-success" name='submit' type='submit'>
           </div>
           </form>
       </article>

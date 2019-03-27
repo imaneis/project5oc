@@ -40,9 +40,9 @@ while ($data = $comments->fetch()) {
                     <td><?= $data['author']; ?></td>
                     <td><?= $data['comment']; ?></td>
                     <td><?= $data['comment_date_fr']; ?></td>
-                    <td><a href="index.php?action=approveComment&amp;id=<?= $data['id'] ?>" class="btn btn-success">Approuver</a></td>
+                    <td><a href="admin.php?action=approveComment&amp;id=<?= $data['id'] ?>" class="btn btn-success">Approuver</a></td>
                     <td>
-                      <a href="index.php?action=deleteComment&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
+                      <a href="admin.php?action=deleteComment&amp;id=<?= $data['id'] ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
   
@@ -68,7 +68,7 @@ $comments->closeCursor();
         }  
         else //Sinon...
         {
-          echo ' <a href="index.php?action=showComments&amp;page='.$i.'">'.$i.'</a> ';
+          echo ' <a href="admin.php?action=showComments&amp;page='.$i.'">'.$i.'</a> ';
         }
       }
     echo '</p>';
