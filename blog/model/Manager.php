@@ -1,8 +1,6 @@
 <?php
 
 class Manager {
-
-	protected $messagesParPage=5;
 	
 	protected function dbConnect()
 	{

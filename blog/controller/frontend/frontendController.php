@@ -48,10 +48,12 @@ class frontendController
     public function listPosts()
     {
         $postManager = new PostManager();
+
+        $messagesParPage=5;
        
         $total = $postManager->totalPosts();
 
-        $nombreDePages=ceil($total/$this->messagesParPage);
+        $nombreDePages=ceil($total/$messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -67,9 +69,9 @@ class frontendController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $postManager->getPosts($premiereEntree, $this->messagesParPage);
+        $posts = $postManager->getPosts($premiereEntree, $messagesParPage);
         
         require('view/frontend/listPostsView.php');
     }
