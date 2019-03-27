@@ -48,12 +48,10 @@ class frontendController
     public function listPosts()
     {
         $postManager = new PostManager();
-
-        $messagesParPage=5;
        
         $total = $postManager->totalPosts();
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
