@@ -15,12 +15,10 @@ class AdminSessionController
       
       if($AdminSessionManager->is_loggedin()!="")
       {
-
-        $messagesParPage=5;
        
         $total = $AdminPostManager->totalPosts();
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -36,9 +34,9 @@ class AdminSessionController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $AdminPostManager->getPosts($premiereEntree, $messagesParPage);
+        $posts = $AdminPostManager->getPosts($premiereEntree, $this->messagesParPage);
 
           require('view/backend/admin/adminSpace.php');
       }
@@ -59,12 +57,10 @@ class AdminSessionController
       
       if($AdminSessionManager->login($name,$email,$password))
       {
-
-        $messagesParPage=5;
        
         $total = $AdminPostManager->totalPosts();
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -80,9 +76,9 @@ class AdminSessionController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $AdminPostManager->getPosts($premiereEntree, $messagesParPage);
+        $posts = $AdminPostManager->getPosts($premiereEntree, $this->messagesParPage);
 
           require('view/backend/admin/adminSpace.php');
       }

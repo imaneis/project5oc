@@ -14,12 +14,10 @@ class MemberSessionController
       
       if($MemberSessionManager->is_loggedin()!="")
       {
-
-        $messagesParPage=5;
        
         $total = $MemberPostManager->totalPosts($_SESSION['member_name']);
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -35,9 +33,9 @@ class MemberSessionController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $_SESSION['member_name']);
+        $posts = $MemberPostManager->getPosts($premiereEntree, $this->messagesParPage, $_SESSION['member_name']);
 
           require('view/backend/member/memberSpace.php');
       }
@@ -75,11 +73,9 @@ class MemberSessionController
       if($MemberSessionManager->login($pseudo,$email,$pass))
       {
 
-        $messagesParPage=5;
-       
         $total = $MemberPostManager->totalPosts($pseudo);
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -95,9 +91,9 @@ class MemberSessionController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $pseudo);
+        $posts = $MemberPostManager->getPosts($premiereEntree, $this->messagesParPage, $pseudo);
 
           require('view/backend/member/memberSpace.php');
       }

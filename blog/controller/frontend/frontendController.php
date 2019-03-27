@@ -67,9 +67,9 @@ class frontendController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $postManager->getPosts($premiereEntree, $messagesParPage);
+        $posts = $postManager->getPosts($premiereEntree, $this->messagesParPage);
         
         require('view/frontend/listPostsView.php');
     }

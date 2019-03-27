@@ -32,11 +32,10 @@ class AdminBackendController
     {
         $AdminCommentManager = new AdminCommentManager();
 
-        $messagesParPage=5;
        
         $total = $AdminCommentManager->totalComments();
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -52,9 +51,9 @@ class AdminBackendController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $comments = $AdminCommentManager->getcomments($premiereEntree, $messagesParPage);
+        $comments = $AdminCommentManager->getcomments($premiereEntree, $this->messagesParPage);
         
         require('view/backend/admin/comments.php');
     }
@@ -105,12 +104,10 @@ class AdminBackendController
     public function showMembers()
     {
         $MembersManager = new MembersManager();
-
-        $messagesParPage=5;
        
         $total = $MembersManager->totalMembers();
 
-        $nombreDePages=ceil($total/$messagesParPage);
+        $nombreDePages=ceil($total/$this->messagesParPage);
 
         if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
         {
@@ -126,9 +123,9 @@ class AdminBackendController
              $pageActuelle=1; // La page actuelle est la n°1    
         }
          
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+        $premiereEntree=($pageActuelle-1)*$this->messagesParPage; // On calcul la première entrée à lire
 
-        $members = $MembersManager->getMembers($premiereEntree, $messagesParPage);
+        $members = $MembersManager->getMembers($premiereEntree, $this->messagesParPage);
 
         require('view/backend/admin/showMembers.php');
     }
