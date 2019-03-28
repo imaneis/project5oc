@@ -64,23 +64,9 @@ if (isset($_GET['action'])) {
         $AdminBackendController->addpost();
         
     } else if ($_GET['action'] == 'adminEditPost') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            
-            if (isset($_POST['a_edit'])) {
-                extract($_POST);
-                
-                if ($title == '' || $content == '') {
-                    echo 'Erreur';
-                }
-                
-                if ($title !== '' && $content !== '') {
-                    $AdminBackendController->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
-                } else {
-                    $AdminBackendController->editPost($_GET['id']);
-                }
-            } else {
-                $AdminBackendController->editPost($_GET['id']);
-            }
+        if (isset($_GET['id']) && $_GET['id'] > 0) { 
+
+             $AdminBackendController->editPost($_GET['id']);
             
         } else {
             echo 'Erreur';
@@ -155,21 +141,7 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'memberEditPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             
-            if (isset($_POST['m_edit'])) {
-                extract($_POST);
-                
-                if ($title == '' || $content == '') {
-                    echo 'Erreur';
-                }
-                
-                if ($title !== '' && $content !== '') {
-                    $MemberBackendController->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
-                } else {
-                    $MemberBackendController->editPost($_GET['id']);
-                }
-            } else {
-                $MemberBackendController->editPost($_GET['id']);
-            }
+            $MemberBackendController->editPost($_GET['id']);
             
         } else {
             echo 'Erreur';

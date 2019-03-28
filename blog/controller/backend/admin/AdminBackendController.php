@@ -100,11 +100,20 @@ class AdminBackendController
 
     public function editPost($id)
     {
-        $AdminPostManager = new AdminPostManager();
+
+        if (isset($_POST['a_edit'])) {
+                extract($_POST);
+                
+                $this->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
+        } else {
+
+             $AdminPostManager = new AdminPostManager();
         
-        $post = $AdminPostManager->getPost($id);
-        
-        require('view/backend/admin/edit.php');
+            $post = $AdminPostManager->getPost($id);
+            
+            require('view/backend/admin/edit.php');
+            
+        }
     }
 
     public function updatePost($id, $postTitle, $postCont)
