@@ -6,18 +6,20 @@ require_once('model/backend/member/MemberSessionManager.php');
 class MemberSessionController
 {
 
-    public function checkLoginStatus()
-    {
-      $MemberPostManager = new MemberPostManager();
+   public function getPostsNumber($MemberPostManager, $pseudo)
+  {
 
-      $MemberSessionManager = new MemberSessionManager();
-      
-      if($MemberSessionManager->is_loggedin()!="")
-      {
+     $messagesParPage=5;
 
-        $messagesParPage=5;
+     if ($pseudo === null) {
+
+      $total = $MemberPostManager ->totalPosts($_SESSION['member_name']);
        
-        $total = $MemberPostManager->totalPosts($_SESSION['member_name']);
+     }
+     else
+     {
+        $total = $MemberPostManager ->totalPosts($pseudo);
+     }
 
         $nombreDePages=ceil($total/$messagesParPage);
 
@@ -37,9 +39,32 @@ class MemberSessionController
          
         $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
 
-        $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $_SESSION['member_name']);
+        if ($pseudo === null) {
 
-          require('view/backend/member/memberSpace.php');
+          $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $_SESSION['member_name']);
+       
+        }
+        else
+       {
+          $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $pseudo);
+       }
+
+        require('view/backend/member/memberSpace.php');
+
+  }
+
+    public function checkLoginStatus()
+    {
+      $MemberPostManager = new MemberPostManager();
+
+      $MemberSessionManager = new MemberSessionManager();
+      
+      if($MemberSessionManager->is_loggedin()!="")
+      {
+
+        $pseudo = null;
+
+        $this->getPostsNumber($MemberPostManager, $pseudo);
       }
 
       elseif(!$MemberSessionManager->is_loggedin())
@@ -75,31 +100,7 @@ class MemberSessionController
       if($MemberSessionManager->login($pseudo,$email,$pass))
       {
 
-        $messagesParPage=5;
-       
-        $total = $MemberPostManager->totalPosts($pseudo);
-
-        $nombreDePages=ceil($total/$messagesParPage);
-
-        if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
-        {
-           $pageActuelle=intval($_GET['page']);
-       
-           if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
-           {
-                $pageActuelle=$nombreDePages;
-           }
-        }
-        else // Sinon
-        {
-             $pageActuelle=1; // La page actuelle est la n°1    
-        }
-         
-        $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
-
-        $posts = $MemberPostManager->getPosts($premiereEntree, $messagesParPage, $pseudo);
-
-          require('view/backend/member/memberSpace.php');
+        $this->getPostsNumber($MemberPostManager, $pseudo);
       }
       else
       {

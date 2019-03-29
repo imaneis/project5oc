@@ -114,6 +114,16 @@
          </p>
          <br>
          <form method="POST">
+         <?php
+            if(isset($message))
+            {
+            ?>
+            <div class="alert alert-info">
+               <?= $message; ?> 
+            </div>
+            <?php
+            }
+            ?> 
             <div class="row">
                <div class="col-sm-4">
                   <input name="lastname" class="form-control" type="text" placeholder="Nom">

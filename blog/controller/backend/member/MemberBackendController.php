@@ -58,19 +58,14 @@ class MemberBackendController
 
     public function addPost()
     {
-        $erreursaisie = false;
         if (isset($_POST['memberAdd'])) {
             extract($_POST);
+
+            $MemberPostManager = new MemberPostManager();
+            $MemberPostManager->createPost($title, $content, $_SESSION['member_name']);
+            header('Location: index.php?action=signIn');
+            exit();
             
-            if ($title == '' || $content == '') {
-                $erreursaisie = true;
-                require('view/backend/member/add.php');
-            } else {
-                $MemberPostManager = new MemberPostManager();
-                $MemberPostManager->createPost($title, $content, $_SESSION['member_name']);
-                header('Location: index.php?action=signIn');
-                exit();
-            }
         } else {
             require('view/backend/member/add.php');
         }
@@ -79,11 +74,19 @@ class MemberBackendController
 
     public function editPost($id)
     {
+
+        if (isset($_POST['m_edit'])) {
+                extract($_POST);
+                
+                $this->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
+        } else {
+
         $MemberPostManager = new MemberPostManager();
         
         $post = $MemberPostManager->getPost($id);
         
         require('view/backend/member/edit.php');
+       }
     }
 
     public function updatePost($id, $postTitle, $postCont)

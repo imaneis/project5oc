@@ -39,7 +39,7 @@ while ($comment = $comments->fetch()) {
 
         <h2>Ajouter un Commentaire</h2>
 
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post"> 
               <div class="form-group">
                 <label for="author">Nom</label>
                 <input type="text" class="form-control" id="author" name="author" required>
@@ -50,6 +50,7 @@ while ($comment = $comments->fetch()) {
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <h6>votre commentaire sera en attente de moderation apres que vous l'envoyer</h6>
       </article>
     </div>
   </div>  
