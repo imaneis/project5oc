@@ -114,6 +114,7 @@
          </p>
          <br>
          <form method="POST">
+<<<<<<< HEAD
          <?php
             if(isset($message))
             {
@@ -124,6 +125,8 @@
             <?php
             }
             ?> 
+=======
+>>>>>>> master
             <div class="row">
                <div class="col-sm-4">
                   <input name="lastname" class="form-control" type="text" placeholder="Nom">

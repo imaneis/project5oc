@@ -1,6 +1,10 @@
 <?php
 session_start();
+<<<<<<< HEAD
 
+=======
+require "vendor/autoload.php";
+>>>>>>> master
 require('controller/frontend/frontendController.php');
 require('controller/backend/admin/AdminSessionController.php');
 require('controller/backend/admin/AdminBackendController.php');
@@ -60,6 +64,7 @@ if (isset($_GET['action'])) {
         $AdminSessionController->logOut();
         
     } else if ($_GET['action'] == 'adminAddPost') {
+<<<<<<< HEAD
 
         if (!isset($_SESSION["admin_session"])) 
         {
@@ -73,10 +78,18 @@ if (isset($_GET['action'])) {
 
     } else if ($_GET['action'] == 'adminEditPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION["admin_session"])) { 
+=======
+        
+        $AdminBackendController->addpost();
+        
+    } else if ($_GET['action'] == 'adminEditPost') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) { 
+>>>>>>> master
 
              $AdminBackendController->editPost($_GET['id']);
             
         } else {
+<<<<<<< HEAD
             header('Location: index.php?action=logIn');
             exit;
         }
@@ -141,6 +154,50 @@ if (isset($_GET['action'])) {
         } else {
             header('Location: index.php?action=logIn');
             exit;
+=======
+            echo 'Erreur';
+        }
+    } else if ($_GET['action'] == 'adminDeletePost') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $AdminBackendController->deletePost($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }
+        
+    } else if ($_GET['action'] == 'showComments') {
+        
+        $AdminBackendController->showComments();
+        
+    } else if ($_GET['action'] == 'deleteComment') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $AdminBackendController->deleteComment($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }
+        
+    } else if ($_GET['action'] == 'approveComment') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $AdminBackendController->approveComment($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }
+        
+    } else if ($_GET['action'] == 'showMembers') {
+        
+        $AdminBackendController->showMembers();
+        
+    } else if ($_GET['action'] == 'approveMember') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $AdminBackendController->approveMember($_GET['id']);
+        } else {
+            echo 'Erreur';
+        }    
+    } else if ($_GET['action'] == 'deleteMember') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $AdminBackendController->deleteMember($_GET['id']);
+        } else {
+            echo 'Erreur';
+>>>>>>> master
         }    
     } else if ($_GET['action'] == 'signIn') {
 
@@ -165,6 +222,7 @@ if (isset($_GET['action'])) {
         $MemberSessionController->signOut();
         
     } else if ($_GET['action'] == 'memberAddPost') {
+<<<<<<< HEAD
 
         if (!isset($_SESSION["member_session"])) 
         {
@@ -178,10 +236,18 @@ if (isset($_GET['action'])) {
         
     } else if ($_GET['action'] == 'memberEditPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_SESSION["member_session"])) {
+=======
+        
+        $MemberBackendController->addpost();
+        
+    } else if ($_GET['action'] == 'memberEditPost') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+>>>>>>> master
             
             $MemberBackendController->editPost($_GET['id']);
             
         } else {
+<<<<<<< HEAD
             header('Location: index.php?action=signIn');
             exit;
         }
@@ -191,6 +257,15 @@ if (isset($_GET['action'])) {
         } else {
             header('Location: index.php?action=signIn');
             exit;
+=======
+            echo 'Erreur';
+        }
+    } else if ($_GET['action'] == 'memberDeletePost') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $MemberBackendController->deletePost($_GET['id']);
+        } else {
+            echo 'Erreur';
+>>>>>>> master
         }
     }
 }
