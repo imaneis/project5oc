@@ -19,10 +19,10 @@ class frontendController
                 //Server settings
                 //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
                 $mail->isSMTP(); // Set mailer to use SMTP
-                $mail->Host       = 'smtp-relay.sendinblue.com'; // Specify main and backup SMTP servers
+                $mail->Host       = 'in-v3.mailjet.com'; // Specify main and backup SMTP servers
                 $mail->SMTPAuth   = true; // Enable SMTP authentication
-                $mail->Username   = 'issanyimane@perso.be'; // SMTP username
-                $mail->Password   = '830XEwWa1TImqp7U'; // SMTP password
+                $mail->Username   = '7716f516b24feca5ba6b482d81695120'; // SMTP username
+                $mail->Password   = 'e80d842196ae4624e90ea07ff2b6da5c'; // SMTP password
                 $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
                 $mail->Port       = 587; // TCP port to connect to
                 //Recipients
