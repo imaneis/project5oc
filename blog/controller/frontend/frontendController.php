@@ -28,8 +28,8 @@ class frontendController
                 $mail->isSMTP(); // Set mailer to use SMTP
                 $mail->Host       = 'in-v3.mailjet.com'; // Specify main and backup SMTP servers
                 $mail->SMTPAuth   = true; // Enable SMTP authentication
-                $mail->Username   = '7716f516b24feca5ba6b482d81695120'; // SMTP username
-                $mail->Password   = 'e80d842196ae4624e90ea07ff2b6da5c'; // SMTP password
+                $mail->Username   = 'aa7d65314bf2ae5d5309c8c2bb599f9e'; // SMTP username
+                $mail->Password   = 'eaf21274eca4c1a46feacb11105ebc9e'; // SMTP password
                 $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
                 $mail->Port       = 587; // TCP port to connect to
 
