@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require('controller/frontend/frontendController.php');
 require('controller/backend/admin/AdminSessionController.php');
 require('controller/backend/admin/AdminBackendController.php');
