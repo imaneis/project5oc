@@ -46,6 +46,6 @@ I used [Git](https://git-scm.com) for versioning.
 * https://codeclimate.com/github/imaneis/project5oc
 
 
-
+Warning : because of an error on git I lost the commits that I made but part is still visible on pull request.
 
 
