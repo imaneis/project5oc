@@ -9,14 +9,14 @@ class AdminSessionManager extends Manager
     {
         try {
             $db  = $this->dbConnect();
-            $req = $db->prepare("SELECT id, name, email, password FROM admin WHERE name=:name OR email=:email");
+            $req = $db->prepare("SELECT id, pseudo, email, pass FROM members WHERE pseudo=:pseudo OR email=:email");
             $req->execute(array(
-                ':name' => $name,
+                ':pseudo' => $name,
                 ':email' => $email
             ));
             $adminRow = $req->fetch(PDO::FETCH_ASSOC);
             if ($req->rowCount() == 1) {
-                if (password_verify($password, $adminRow['password'])) {
+                if (password_verify($password, $adminRow['pass'])) {
                     $_SESSION['admin_session'] = $adminRow['id'];
                     return true;
                 } else {
