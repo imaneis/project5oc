@@ -18,7 +18,7 @@ class MembersManager extends Manager
     public function getMembers($premiereEntree, $messagesParPage)
     {
         $db  = $this->dbConnect();
-        $req = $db->query('SELECT id, pseudo, email, approvement, DATE_FORMAT(date_inscription, \'%d/%m/%Y\') AS date_inscription_fr FROM members ORDER BY date_inscription DESC LIMIT ' . $premiereEntree . ', ' . $messagesParPage . '');
+        $req = $db->query('SELECT id, pseudo, email, approvement, is_admin, DATE_FORMAT(date_inscription, \'%d/%m/%Y\') AS date_inscription_fr FROM members WHERE is_admin = 0 ORDER BY date_inscription DESC LIMIT ' . $premiereEntree . ', ' . $messagesParPage . '');
         $req->execute(array(
             $premiereEntree,
             $messagesParPage
