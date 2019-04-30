@@ -18,6 +18,9 @@ class AdminSessionManager extends Manager
             if ($req->rowCount() == 1) {
                 if (password_verify($password, $adminRow['pass'])) {
                     $_SESSION['admin_session'] = $adminRow['id'];
+                    //On enregistre notre token
+                    $token = bin2hex(openssl_random_pseudo_bytes(6));
+                    $_SESSION['adminToken'] = $token;
                     return true;
                 } else {
                     return false;
@@ -38,6 +41,7 @@ class AdminSessionManager extends Manager
     {
         session_destroy();
         unset($_SESSION['admin_session']);
+        unset($_SESSION['adminToken']);
         return true;
     }
 
