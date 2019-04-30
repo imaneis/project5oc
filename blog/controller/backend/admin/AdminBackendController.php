@@ -52,7 +52,7 @@ class AdminBackendController
 
     public function addPost()
     {
-        if (isset($_POST['adminAdd'])) {
+        if (isset($_POST['adminAdd']) && isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
             extract($_POST);
 
             $AdminPostManager = new AdminPostManager();
@@ -75,26 +75,44 @@ class AdminBackendController
 
     public function deleteComment($id)
     {
+        if (isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
+
         $AdminCommentManager = new AdminCommentManager();
 
         $comments = $AdminCommentManager->deleteComment($id);
         header('Location: index.php?action=showComments');
         exit();
+
+        }
+        else
+        {
+            header('Location: index.php?action=showComments');
+            exit();
+        }
     }
 
     public function approveComment($id)
     {
+        if (isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
+
         $AdminCommentManager = new AdminCommentManager();
 
         $comments = $AdminCommentManager->approveComment($id);
         header('Location: index.php?action=showComments');
         exit();
+
+        }
+        else
+        {
+            header('Location: index.php?action=showComments');
+            exit();
+        }
     }
 
     public function editPost($id)
     {
 
-        if (isset($_POST['a_edit'])) {
+        if (isset($_POST['a_edit']) && isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
             extract($_POST);
 
             $this->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
@@ -118,11 +136,19 @@ class AdminBackendController
 
     public function deletePost($id)
     {
+        if (isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
+
         $AdminPostManager = new AdminPostManager();
 
         $posts = $AdminPostManager->deletePost($id);
         header('Location: index.php?action=logIn');
         exit();
+        }
+        else
+        {
+            header('Location: index.php?action=logIn');
+            exit();
+        }
     }
 
     public function showMembers()
@@ -135,20 +161,36 @@ class AdminBackendController
 
     public function approveMember($id)
     {
+        if (isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
+
         $MembersManager = new MembersManager();
 
         $member = $MembersManager->approveMember($id);
         header('Location: index.php?action=showMembers');
         exit();
+        }
+        else
+        {
+            header('Location: index.php?action=showMembers');
+            exit();
+        }
     }
 
     public function deleteMember($id)
     {
+        if (isset($_SESSION['adminToken']) && !empty($_SESSION['adminToken'])) {
+
         $MembersManager = new MembersManager();
 
         $member = $MembersManager->deleteMember($id);
         header('Location: index.php?action=showMembers');
         exit();
+        }
+        else
+        {
+            header('Location: index.php?action=showMembers');
+            exit();
+        }
     }
 
 }
